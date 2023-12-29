@@ -11,6 +11,7 @@ import (
 )
 
 func circuitBreakerDemo() {
+	fmt.Println("Circuit Breaker Pattern Demo...")
 	ctx := context.Background()
 
 	errorProneFeatureWithCircuitBreaker := Breaker(errorProneFeature, 2)
