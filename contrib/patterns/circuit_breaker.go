@@ -1,4 +1,4 @@
-package main
+package patterns
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func circuitBreakerDemo() {
+func CircuitBreakerDemo() {
 	fmt.Println("Circuit Breaker Pattern Demo...")
 	ctx := context.Background()
 

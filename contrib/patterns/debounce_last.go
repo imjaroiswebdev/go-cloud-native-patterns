@@ -1,4 +1,4 @@
-package main
+package patterns
 
 import (
 	"context"
@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func debounceLastDemo() {
+func DebounceLastDemo() {
 	fmt.Println("Debounce Last Pattern Demo...")
 	ctx := context.Background()
 
