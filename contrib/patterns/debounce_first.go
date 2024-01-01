@@ -28,18 +28,6 @@ func DebounceFirstDemo() {
 	}
 }
 
-func statefulFeature() Circuit {
-	count := 1
-
-	return func(ctx context.Context) (string, error) {
-		defer func() {
-			count++
-		}()
-
-		return fmt.Sprintf("count = %d", count), nil
-	}
-}
-
 // We start by defining a function type witht he signature of the function we
 // want to limit. Also like Circuit Breaker, we call it `Circuit`. Due to it is
 // identical to the one used in Circuit Breaker example, We're going to re-use
@@ -76,5 +64,17 @@ func DebounceFirst(circuit Circuit, d time.Duration) Circuit {
 		result, err = circuit(ctx)
 
 		return result, err
+	}
+}
+
+func statefulFeature() Circuit {
+	count := 1
+
+	return func(ctx context.Context) (string, error) {
+		defer func() {
+			count++
+		}()
+
+		return fmt.Sprintf("count = %d", count), nil
 	}
 }

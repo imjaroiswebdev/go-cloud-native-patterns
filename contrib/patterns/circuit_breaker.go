@@ -31,22 +31,6 @@ func CircuitBreakerDemo() {
 
 type Circuit func(ctx context.Context) (string, error)
 
-func errorProneFeature(ctx context.Context) (string, error) {
-	select {
-	case <-ctx.Done():
-		return "", ctx.Err()
-	default:
-	}
-
-	randNum := rand.Intn(1000)
-	shouldFail := randNum >= 400
-	if shouldFail {
-		return "", errors.New("Internal Error")
-	}
-
-	return fmt.Sprintf("%d", randNum), nil
-}
-
 // The Breaker function accepts any function that conforms to the Circuit type
 // definition, and a unsigned integer representing the number of consecutive
 // failures allowed before the circuit automatically opens.
@@ -87,4 +71,20 @@ func Breaker(circuit Circuit, failureThreshold uint) Circuit {
 
 		return response, nil
 	}
+}
+
+func errorProneFeature(ctx context.Context) (string, error) {
+	select {
+	case <-ctx.Done():
+		return "", ctx.Err()
+	default:
+	}
+
+	randNum := rand.Intn(1000)
+	shouldFail := randNum >= 400
+	if shouldFail {
+		return "", errors.New("Internal Error")
+	}
+
+	return fmt.Sprintf("%d", randNum), nil
 }

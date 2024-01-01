@@ -19,18 +19,6 @@ func RetryDemo() {
 	fmt.Println(res, err)
 }
 
-var count int
-
-func emulateTransientError(ctx context.Context) (string, error) {
-	count++
-
-	if count <= 3 {
-		return "intentional fail", errors.New("error")
-	} else {
-		return "success", nil
-	}
-}
-
 // We beging by creating an Effector type that specifies the signature of the
 // function that's interacting with your databse or other upstream service.
 
@@ -52,5 +40,17 @@ func Retry(effector Effector, retries int, delay time.Duration) Effector {
 				return "", ctx.Err()
 			}
 		}
+	}
+}
+
+var count int
+
+func emulateTransientError(ctx context.Context) (string, error) {
+	count++
+
+	if count <= 3 {
+		return "intentional fail", errors.New("error")
+	} else {
+		return "success", nil
 	}
 }
