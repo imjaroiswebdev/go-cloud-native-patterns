@@ -11,6 +11,8 @@ import (
 )
 
 func ThrottleDemo() {
+	fmt.Println("Throttle Pattern Demo...")
+
 	ctx := context.Background()
 
 	dummyEffectorWithThrottle := Throttle(dummyEffector, 3, 1, 10*time.Millisecond)

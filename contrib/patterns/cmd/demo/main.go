@@ -13,6 +13,7 @@ func main() {
 	debounceLastFlag := flag.Bool("debounce-last", false, "Execute Debounce Last Demo")
 	retryFlag := flag.Bool("retry", false, "Execute Retry Demo")
 	throttleFlag := flag.Bool("throttle", false, "Execute Throttle Demo")
+	timeoutFlag := flag.Bool("timeout", false, "Execute Time Demo")
 
 	flag.Parse()
 
@@ -31,15 +32,24 @@ func main() {
 	if *throttleFlag {
 		patterns.ThrottleDemo()
 	}
+	if *timeoutFlag {
+		patterns.TimeoutDemo()
+	}
 
 	// If no flags are set, execute all demos
-	if !(*circuitBreakerFlag || *debounceFirstFlag || *debounceLastFlag || *retryFlag || *throttleFlag) {
+	if !(*circuitBreakerFlag ||
+		*debounceFirstFlag ||
+		*debounceLastFlag ||
+		*retryFlag ||
+		*throttleFlag ||
+		*timeoutFlag) {
 		fmt.Println("Executing all demos...")
 		patterns.CircuitBreakerDemo()
 		patterns.DebounceFirstDemo()
 		patterns.DebounceLastDemo()
 		patterns.RetryDemo()
 		patterns.ThrottleDemo()
+		patterns.TimeoutDemo()
 	}
 
 }
