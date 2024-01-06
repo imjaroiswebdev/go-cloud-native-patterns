@@ -14,7 +14,8 @@ func main() {
 	retryFlag := flag.Bool("retry", false, "Execute Retry Demo")
 	throttleFlag := flag.Bool("throttle", false, "Execute Throttle Demo")
 	timeoutFlag := flag.Bool("timeout", false, "Execute Time Demo")
-	fanInFlag := flag.Bool("fanin", false, "Execute Fan-in Demo")
+	faninFlag := flag.Bool("fanin", false, "Execute Fan-in Demo")
+	fanoutFlag := flag.Bool("fanout", false, "Execute Fan-out Demo")
 
 	flag.Parse()
 
@@ -36,8 +37,11 @@ func main() {
 	if *timeoutFlag {
 		patterns.TimeoutDemo()
 	}
-	if *fanInFlag {
-		patterns.FanInDemo()
+	if *faninFlag {
+		patterns.FaninnDemo()
+	}
+	if *fanoutFlag {
+		patterns.FanoutDemo()
 	}
 
 	// If no flags are set, execute all demos
@@ -47,7 +51,8 @@ func main() {
 		*retryFlag ||
 		*throttleFlag ||
 		*timeoutFlag ||
-		*fanInFlag) {
+		*faninFlag ||
+		*fanoutFlag) {
 		fmt.Println("Executing all demos...")
 		patterns.CircuitBreakerDemo()
 		patterns.DebounceFirstDemo()
@@ -55,7 +60,8 @@ func main() {
 		patterns.RetryDemo()
 		patterns.ThrottleDemo()
 		patterns.TimeoutDemo()
-		patterns.FanInDemo()
+		patterns.FaninnDemo()
+		patterns.FanoutDemo()
 	}
 
 }

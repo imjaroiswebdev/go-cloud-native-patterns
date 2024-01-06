@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func FanInDemo() {
+func FaninnDemo() {
 	fmt.Println("Fan-in Pattern Demo...")
 
 	sources := make([]<-chan int, 0)
