@@ -16,6 +16,7 @@ func main() {
 	timeoutFlag := flag.Bool("timeout", false, "Execute Time Demo")
 	faninFlag := flag.Bool("fanin", false, "Execute Fan-in Demo")
 	fanoutFlag := flag.Bool("fanout", false, "Execute Fan-out Demo")
+	futureFlag := flag.Bool("future", false, "Execute Future Demo")
 
 	flag.Parse()
 
@@ -43,6 +44,9 @@ func main() {
 	if *fanoutFlag {
 		patterns.FanoutDemo()
 	}
+	if *futureFlag {
+		patterns.FutureDemo()
+	}
 
 	// If no flags are set, execute all demos
 	if !(*circuitBreakerFlag ||
@@ -52,7 +56,8 @@ func main() {
 		*throttleFlag ||
 		*timeoutFlag ||
 		*faninFlag ||
-		*fanoutFlag) {
+		*fanoutFlag ||
+		*futureFlag) {
 		fmt.Println("Executing all demos...")
 		patterns.CircuitBreakerDemo()
 		patterns.DebounceFirstDemo()
@@ -62,6 +67,7 @@ func main() {
 		patterns.TimeoutDemo()
 		patterns.FaninnDemo()
 		patterns.FanoutDemo()
+		patterns.FutureDemo()
 	}
 
 }

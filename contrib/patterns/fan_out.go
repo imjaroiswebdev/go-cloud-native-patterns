@@ -6,7 +6,7 @@ import (
 )
 
 func FanoutDemo() {
-	fmt.Println("Retry Pattern Demo...")
+	fmt.Println("Fan-out Pattern Demo...")
 
 	source := make(chan int)
 	dests := Split(source, 5)
