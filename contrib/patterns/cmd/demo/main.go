@@ -17,6 +17,7 @@ func main() {
 	faninFlag := flag.Bool("fanin", false, "Execute Fan-in Demo")
 	fanoutFlag := flag.Bool("fanout", false, "Execute Fan-out Demo")
 	futureFlag := flag.Bool("future", false, "Execute Future Demo")
+	shardingFlag := flag.Bool("sharding", false, "Execute Sharding Demo")
 
 	flag.Parse()
 
@@ -47,6 +48,9 @@ func main() {
 	if *futureFlag {
 		patterns.FutureDemo()
 	}
+	if *shardingFlag {
+		patterns.ShardingDemo()
+	}
 
 	// If no flags are set, execute all demos
 	if !(*circuitBreakerFlag ||
@@ -57,7 +61,8 @@ func main() {
 		*timeoutFlag ||
 		*faninFlag ||
 		*fanoutFlag ||
-		*futureFlag) {
+		*futureFlag ||
+		*shardingFlag) {
 		fmt.Println("Executing all demos...")
 		patterns.CircuitBreakerDemo()
 		patterns.DebounceFirstDemo()
@@ -68,6 +73,7 @@ func main() {
 		patterns.FaninnDemo()
 		patterns.FanoutDemo()
 		patterns.FutureDemo()
+		patterns.ShardingDemo()
 	}
 
 }
